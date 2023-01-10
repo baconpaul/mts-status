@@ -1,4 +1,4 @@
-name: CI-Elastika-CMak
+name: CI-Cmake-MTS-Status
 
 on:
   push:
