@@ -8,4 +8,8 @@ add_executable(${PROJECT_NAME}
                libs/MTS-ESP/Client/libMTSClient.cpp
                libs/MTS-ESP/Master/libMTSMaster.cpp)
 target_include_directories(${PROJECT_NAME} PUBLIC libs/MTS-ESP/Client libs/MTS-ESP/Master)
+
+if (UNIX AND NOT APPLE)
+   target_link_libraries(${PROJECT_NAME} PUBLIC dl)
+endif()
                
