@@ -8,27 +8,24 @@ int main(int argc, char **argv)
     std::cout << "   Can Register Master: " << MTS_CanRegisterMaster() << std::endl;
     std::cout << "   Client Count: " << MTS_GetNumClients() << std::endl;
 
-    if (!MTS_CanRegisterMaster())
+    if (argc >= 2)
     {
-        if (argc >= 2)
+        auto s = std::string(argv[1]);
+        if (s == "--reset")
         {
-            auto s = std::string(argv[1]);
-            if (s == "--reset")
-            {
-                std::cout << "Resetting MTS-ESP" << std::endl;
-                MTS_Reinitialize();
-            }
-            else
-            {
-                std::cout << "Unknown command line argument " << s << std::endl;
-            }
+            std::cout << "Resetting MTS-ESP" << std::endl;
+            MTS_Reinitialize();
         }
         else
         {
-            std::cout
-                << "An MTS Master is registered. Re-run with `--reset` as first arg to reset. "
-                << std::endl;
+            std::cout << "Unknown command line argument " << s << std::endl;
         }
+    }
+    else
+    {
+        std::cout
+            << "Re-run with `--reset` as first arg to reset. "
+            << std::endl;
     }
     return 0;
 }
